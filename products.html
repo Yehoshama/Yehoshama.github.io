@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -24,7 +24,6 @@
 
 <body>
     <canvas id="particle-canvas"></canvas>
-
     <header class="site-header">
         <div class="container header-inner">
             <a href="index.html" class="logo-link"><span class="logo-text">Yehoshama</span></a>
@@ -43,8 +42,18 @@
             </button>
             <div class="lang-switcher">
                 <span class="lang-globe">🌐</span>
-                <button class="lang-btn active" data-lang="en">EN</button>
-                <button class="lang-btn" data-lang="he">עב</button>
+                <button class="lang-btn active" data-lang="en"><img src="https://flagcdn.com/16x12/gb.png" alt=""
+                        class="flag-icon"> EN</button>
+                <button class="lang-btn" data-lang="he"><img src="https://flagcdn.com/16x12/il.png" alt=""
+                        class="flag-icon"> עב</button>
+                <button class="lang-btn" data-lang="ar"><img src="https://flagcdn.com/16x12/sa.png" alt=""
+                        class="flag-icon"> AR</button>
+                <button class="lang-btn" data-lang="uk"><img src="https://flagcdn.com/16x12/ua.png" alt=""
+                        class="flag-icon"> UK</button>
+                <button class="lang-btn" data-lang="zh"><img src="https://flagcdn.com/16x12/cn.png" alt=""
+                        class="flag-icon"> ZH</button>
+                <button class="lang-btn" data-lang="ja"><img src="https://flagcdn.com/16x12/jp.png" alt=""
+                        class="flag-icon"> JA</button>
             </div>
         </div>
     </header>
@@ -62,43 +71,93 @@
 
         <section class="content-section">
             <div class="container section-inner">
-                <div class="product-grid">
-                    <a href="products/product-alpha/index.html" class="product-card reveal">
-                        <div class="product-card-image">🛡️</div>
-                        <div class="product-card-body">
-                            <div class="product-card-footer" style="margin-bottom:0.75rem;">
-                                <h3>Product Alpha</h3>
-                                <span class="badge coming-soon">Coming Soon</span>
-                            </div>
-                            <p class="tagline">A powerful tool designed to streamline your workflow and boost
-                                productivity.</p>
-                            <p class="price-tag">Contact for pricing</p>
+                <div class="blog-layout">
+                    <!-- Product Tree Sidebar -->
+                    <aside class="blog-sidebar reveal">
+                        <h3 class="sidebar-title">Categories</h3>
+                        <ul class="topic-tree">
+                            <li class="topic-node">
+                                <button class="topic-toggle is-open" aria-expanded="true">
+                                    <span class="toggle-icon">▾</span>
+                                    <span class="topic-icon">⚡</span>
+                                    Productivity
+                                </button>
+                                <ul class="topic-children is-expanded">
+                                    <li><a href="products/product-alpha/index.html" class="post-link">
+                                            <span class="post-title">Product Alpha</span>
+                                            <span class="post-meta">Coming Soon</span>
+                                        </a></li>
+                                </ul>
+                            </li>
+                            <li class="topic-node">
+                                <button class="topic-toggle is-open" aria-expanded="true">
+                                    <span class="toggle-icon">▾</span>
+                                    <span class="topic-icon">📊</span>
+                                    Analytics
+                                </button>
+                                <ul class="topic-children is-expanded">
+                                    <li><a href="products/product-beta/index.html" class="post-link">
+                                            <span class="post-title">Product Beta</span>
+                                            <span class="post-meta">Coming Soon</span>
+                                        </a></li>
+                                </ul>
+                            </li>
+                            <li class="topic-node">
+                                <button class="topic-toggle is-open" aria-expanded="true">
+                                    <span class="toggle-icon">▾</span>
+                                    <span class="topic-icon">🔒</span>
+                                    Security
+                                </button>
+                                <ul class="topic-children is-expanded">
+                                    <li><a href="products/product-gamma/index.html" class="post-link">
+                                            <span class="post-title">Product Gamma</span>
+                                            <span class="post-meta">Coming Soon</span>
+                                        </a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </aside>
+
+                    <!-- Product Cards Feed -->
+                    <div class="blog-feed">
+                        <div class="section-header reveal">
+                            <h2>All Products</h2>
+                            <div class="accent-line"></div>
                         </div>
-                    </a>
-                    <a href="products/product-beta/index.html" class="product-card reveal">
-                        <div class="product-card-image">📊</div>
-                        <div class="product-card-body">
-                            <div class="product-card-footer" style="margin-bottom:0.75rem;">
-                                <h3>Product Beta</h3>
-                                <span class="badge coming-soon">Coming Soon</span>
+
+                        <a href="products/product-alpha/index.html" class="blog-post-card reveal">
+                            <div class="blog-post-meta">
+                                <span class="badge coming-soon">Productivity</span>
+                                <span class="blog-post-date">Coming Soon</span>
                             </div>
-                            <p class="tagline">Data-driven insights for businesses that want to understand their
-                                metrics.</p>
-                            <p class="price-tag">Contact for pricing</p>
-                        </div>
-                    </a>
-                    <a href="products/product-gamma/index.html" class="product-card reveal">
-                        <div class="product-card-image">🔒</div>
-                        <div class="product-card-body">
-                            <div class="product-card-footer" style="margin-bottom:0.75rem;">
-                                <h3>Product Gamma</h3>
-                                <span class="badge coming-soon">Coming Soon</span>
+                            <h3>🛡️ Product Alpha</h3>
+                            <p>A powerful tool designed to streamline your workflow and boost productivity. Workflow
+                                automation, real-time collaboration, and enterprise-grade security.</p>
+                            <span class="learn-more">View Details →</span>
+                        </a>
+
+                        <a href="products/product-beta/index.html" class="blog-post-card reveal">
+                            <div class="blog-post-meta">
+                                <span class="badge coming-soon">Analytics</span>
+                                <span class="blog-post-date">Coming Soon</span>
                             </div>
-                            <p class="tagline">Enterprise-grade security solutions built with transparency and
-                                integrity.</p>
-                            <p class="price-tag">Contact for pricing</p>
-                        </div>
-                    </a>
+                            <h3>📊 Product Beta</h3>
+                            <p>Data-driven insights for businesses that want to understand their metrics. Real-time
+                                dashboards, ML-powered predictions, and automated reporting.</p>
+                            <span class="learn-more">View Details →</span>
+                        </a>
+
+                        <a href="products/product-gamma/index.html" class="blog-post-card reveal">
+                            <div class="blog-post-meta">
+                                <span class="badge coming-soon">Security</span>
+                                <span class="blog-post-date">Coming Soon</span>
+                            </div>
+                            <h3>🔒 Product Gamma</h3>
+                            <p>Enterprise-grade security solutions built with transparency and integrity. Zero-trust
+                                architecture, end-to-end encryption, and compliance-ready.</p>
+                            <span class="learn-more">View Details →</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>

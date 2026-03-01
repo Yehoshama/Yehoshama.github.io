@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Getting Started with Our API — Tutorials — Yehoshama Blog</title>
+    <title>Getting Started with Our API — Yehoshama Blog</title>
     <meta name="description" content="A step-by-step guide to integrating with the Yehoshama API.">
     <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,40 +33,63 @@
             <button class="hamburger" id="hamburger-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
             </button>
+            <div class="lang-switcher">
+                <span class="lang-globe">🌐</span>
+                <button class="lang-btn active" data-lang="en"><img src="https://flagcdn.com/16x12/gb.png" alt=""
+                        class="flag-icon"> EN</button>
+                <button class="lang-btn" data-lang="he"><img src="https://flagcdn.com/16x12/il.png" alt=""
+                        class="flag-icon"> עב</button>
+                <button class="lang-btn" data-lang="ar"><img src="https://flagcdn.com/16x12/sa.png" alt=""
+                        class="flag-icon"> AR</button>
+                <button class="lang-btn" data-lang="uk"><img src="https://flagcdn.com/16x12/ua.png" alt=""
+                        class="flag-icon"> UK</button>
+                <button class="lang-btn" data-lang="zh"><img src="https://flagcdn.com/16x12/cn.png" alt=""
+                        class="flag-icon"> ZH</button>
+                <button class="lang-btn" data-lang="ja"><img src="https://flagcdn.com/16x12/jp.png" alt=""
+                        class="flag-icon"> JA</button>
+            </div>
         </div>
     </header>
-            <div class="lang-switcher">
-                <span class="lang-globe"></span>
-                <button class="lang-btn active" data-lang="en">EN</button>
-                <button class="lang-btn" data-lang="he">עב</button>
-            </div>
     <div class="nav-overlay" id="nav-overlay"></div>
 
     <main>
         <section class="subpage-hero">
             <div class="container">
                 <a href="../../blog.html" class="back-link">← Back to Blog</a>
-                <span class="badge coming-soon" style="margin-bottom:1rem;display:inline-block;">Tutorials</span>
+                <span class="badge coming-soon">Tutorials</span>
                 <h1>Getting Started with Our API</h1>
-                <p class="subpage-subtitle">A step-by-step guide to integrating with the Yehoshama API.</p>
-                <p style="color:var(--text-secondary);font-size:0.85rem;margin-top:1rem;">March 2026 · 8 min read</p>
+                <p class="subpage-subtitle">March 2026 · 8 min read</p>
             </div>
         </section>
 
         <section class="content-section">
             <div class="container section-inner">
-                <div class="prose center-block reveal">
-                    <p class="lead">This is a placeholder tutorial. Replace with the actual step-by-step guide when
-                        ready.</p>
-                    <p>Sections to include:</p>
-                    <ul class="features-list">
-                        <li>Authentication and API key setup</li>
-                        <li>Making your first request</li>
-                        <li>Handling responses and errors</li>
-                        <li>Pagination and filtering</li>
-                        <li>Rate limits and best practices</li>
+                <div class="prose center-block">
+                    <p class="lead">This guide walks you through setting up and making your first API call with the
+                        Yehoshama API.</p>
+
+                    <h2>Prerequisites</h2>
+                    <p>Before you begin, make sure you have:</p>
+                    <ul>
+                        <li>An active Yehoshama account</li>
+                        <li>An API key (generated from your dashboard)</li>
+                        <li>curl or a REST client installed</li>
                     </ul>
-                    <p>Stay tuned — this tutorial is being written.</p>
+
+                    <h2>Authentication</h2>
+                    <p>All API requests require authentication via an API key in the <code>Authorization</code> header:
+                    </p>
+                    <pre><code>Authorization: Bearer YOUR_API_KEY</code></pre>
+
+                    <h2>Making Your First Request</h2>
+                    <p>Use the following endpoint to verify your connection:</p>
+                    <pre><code>GET https://api.yehoshama.com/v1/status</code></pre>
+                    <p>A successful response will return:</p>
+                    <pre><code>{ "status": "ok", "version": "1.0.0" }</code></pre>
+
+                    <h2>Next Steps</h2>
+                    <p>Once authenticated, explore the full API documentation to build your integration. For support,
+                        reach out via our <a href="../../contact.html">contact page</a>.</p>
                 </div>
             </div>
         </section>
@@ -85,6 +108,7 @@
             <div class="footer-copy">&copy; <span id="year"></span> Yehoshama. All rights reserved.</div>
         </div>
     </footer>
+
     <button id="chatbot-toggle" class="chatbot-fab" aria-label="Chat with us">💬</button>
     <div id="chatbot-container" class="chatbot-widget"></div>
     <script src="../../js/main.js"></script>

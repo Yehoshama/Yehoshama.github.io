@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building Resilient APIs — Engineering — Yehoshama Blog</title>
+    <title>Building Resilient APIs — Yehoshama Blog</title>
     <meta name="description"
         content="Best practices for designing APIs that handle failure gracefully and scale under pressure.">
     <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
@@ -34,41 +34,65 @@
             <button class="hamburger" id="hamburger-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
             </button>
+            <div class="lang-switcher">
+                <span class="lang-globe">🌐</span>
+                <button class="lang-btn active" data-lang="en"><img src="https://flagcdn.com/16x12/gb.png" alt=""
+                        class="flag-icon"> EN</button>
+                <button class="lang-btn" data-lang="he"><img src="https://flagcdn.com/16x12/il.png" alt=""
+                        class="flag-icon"> עב</button>
+                <button class="lang-btn" data-lang="ar"><img src="https://flagcdn.com/16x12/sa.png" alt=""
+                        class="flag-icon"> AR</button>
+                <button class="lang-btn" data-lang="uk"><img src="https://flagcdn.com/16x12/ua.png" alt=""
+                        class="flag-icon"> UK</button>
+                <button class="lang-btn" data-lang="zh"><img src="https://flagcdn.com/16x12/cn.png" alt=""
+                        class="flag-icon"> ZH</button>
+                <button class="lang-btn" data-lang="ja"><img src="https://flagcdn.com/16x12/jp.png" alt=""
+                        class="flag-icon"> JA</button>
+            </div>
         </div>
     </header>
-            <div class="lang-switcher">
-                <span class="lang-globe"></span>
-                <button class="lang-btn active" data-lang="en">EN</button>
-                <button class="lang-btn" data-lang="he">עב</button>
-            </div>
     <div class="nav-overlay" id="nav-overlay"></div>
 
     <main>
         <section class="subpage-hero">
             <div class="container">
                 <a href="../../blog.html" class="back-link">← Back to Blog</a>
-                <span class="badge available" style="margin-bottom:1rem;display:inline-block;">Engineering</span>
+                <span class="badge available">Engineering</span>
                 <h1>Building Resilient APIs</h1>
-                <p class="subpage-subtitle">Best practices for designing APIs that handle failure gracefully and scale
-                    under pressure.</p>
-                <p style="color:var(--text-secondary);font-size:0.85rem;margin-top:1rem;">March 2026 · 5 min read</p>
+                <p class="subpage-subtitle">March 2026 · 5 min read</p>
             </div>
         </section>
 
         <section class="content-section">
             <div class="container section-inner">
-                <div class="prose center-block reveal">
-                    <p class="lead">This is a placeholder blog post. When real content is ready, replace this with the
-                        actual article.</p>
-                    <p>Topics to cover in this post:</p>
-                    <ul class="features-list">
-                        <li>Circuit breaker patterns for external service calls</li>
-                        <li>Retry strategies with exponential backoff</li>
-                        <li>Rate limiting and throttling best practices</li>
-                        <li>Health checks and graceful degradation</li>
-                        <li>Idempotency in API design</li>
+                <div class="prose center-block">
+                    <p class="lead">Resilient APIs don't just handle the happy path — they gracefully handle every
+                        failure mode your system will inevitably encounter.</p>
+
+                    <h2>Design for Failure</h2>
+                    <p>Every external call can fail. Every database query can time out. Every message can be lost. The
+                        question isn't whether failures will happen — it's whether your system can recover when they do.
+                    </p>
+
+                    <h2>Key Patterns</h2>
+                    <ul>
+                        <li><strong>Circuit Breakers</strong> — Stop cascading failures by detecting repeated errors and
+                            short-circuiting requests to failing services.</li>
+                        <li><strong>Retry with Backoff</strong> — Automatic retries with exponential backoff prevent
+                            thundering herds while recovering from transient failures.</li>
+                        <li><strong>Bulkheads</strong> — Isolate components so a failure in one doesn't take down the
+                            entire system.</li>
+                        <li><strong>Timeouts</strong> — Always set timeouts. An API that hangs indefinitely is worse
+                            than one that fails fast.</li>
                     </ul>
-                    <p>Stay tuned — this article is being written.</p>
+
+                    <h2>Testing Resilience</h2>
+                    <p>Use chaos engineering principles: inject failures, simulate network partitions, and kill
+                        processes randomly. If your system can survive these tests, it can survive production.</p>
+
+                    <h2>Monitoring</h2>
+                    <p>Track error rates, latency percentiles (p99, not just averages), and throughput. Alerting on
+                        symptoms rather than causes gives you faster response times.</p>
                 </div>
             </div>
         </section>
@@ -87,6 +111,7 @@
             <div class="footer-copy">&copy; <span id="year"></span> Yehoshama. All rights reserved.</div>
         </div>
     </footer>
+
     <button id="chatbot-toggle" class="chatbot-fab" aria-label="Chat with us">💬</button>
     <div id="chatbot-container" class="chatbot-widget"></div>
     <script src="../../js/main.js"></script>

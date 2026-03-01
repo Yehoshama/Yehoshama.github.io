@@ -8,10 +8,10 @@
 
 /* ── Design Tokens ── */
 :root {
-  /* Backgrounds — warm, eye-friendly light palette */
-  --bg-primary: #f5f6fa;
-  --bg-secondary: #eef0f5;
-  --bg-surface: #ffffff;
+  /* Backgrounds — slightly darkened for particle contrast */
+  --bg-primary: #e4e7ef;
+  --bg-secondary: #d9dde6;
+  --bg-surface: #f0f1f5;
 
   /* Text */
   --text-primary: #2c3040;
@@ -1038,18 +1038,22 @@ a.card-link:hover {
 }
 
 .lang-btn {
-  padding: 0.3rem 0.5rem;
+  padding: 0.2rem 0.4rem;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
   background: none;
   border: 1.5px solid transparent;
   border-radius: 4px;
   color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
 }
 
 .lang-btn:hover {
@@ -1063,6 +1067,14 @@ a.card-link:hover {
   background: var(--accent-subtle);
 }
 
+.flag-icon {
+  width: 16px;
+  height: 12px;
+  vertical-align: middle;
+  border-radius: 1px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
 /* ── Particle Canvas ── */
 #particle-canvas {
   position: fixed;
@@ -1072,12 +1084,12 @@ a.card-link:hover {
   height: 100%;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.5;
 }
 
-/* Ensure content stays above particles */
+/* Z-Index layering: particles behind content, header and chatbot above all */
 .site-header {
   z-index: 1000;
+  position: relative;
 }
 
 main {

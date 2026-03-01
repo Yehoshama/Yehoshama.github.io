@@ -226,7 +226,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /**
  * Canvas-based particle system
- * Floating dots with connecting lines — subtle techy background effect
+ * Colorful floating dots with connecting lines — techy background effect
+ * Particles react to mouse position (push away)
  */
 function initParticles() {
     const canvas = document.getElementById('particle-canvas');
@@ -237,22 +238,36 @@ function initParticles() {
     let particles = [];
     let width, height;
 
+    // High-saturation techy color palette
+    const colors = [
+        { r: 0, g: 255, b: 255 },     // Cyan
+        { r: 255, g: 0, b: 200 },      // Magenta / Hot Pink
+        { r: 0, g: 255, b: 128 },      // Lime / Mint
+        { r: 80, g: 120, b: 255 },     // Electric Blue
+        { r: 255, g: 160, b: 0 },      // Orange
+        { r: 160, g: 80, b: 255 },     // Purple
+        { r: 0, g: 200, b: 255 },      // Sky Cyan
+        { r: 255, g: 80, b: 80 },      // Coral Red
+        { r: 128, g: 255, b: 0 },      // Neon Green
+        { r: 255, g: 255, b: 0 },      // Yellow
+    ];
+
     // Configuration
     const config = {
-        particleCount: 60,
-        maxSpeed: 0.4,
-        particleSize: 2,
-        lineDistance: 150,
-        lineWidth: 0.5,
-        // Uses the teal accent color with low opacity
-        particleColor: 'rgba(26, 107, 90, 0.35)',
-        lineColor: 'rgba(26, 107, 90, 0.08)',
-        mouseRadius: 180,
+        particleCount: 150,
+        maxSpeed: 0.35,
+        minSize: 1.5,
+        maxSize: 4,
+        lineDistance: 140,
+        lineWidth: 0.6,
+        lineOpacity: 0.15,
+        mouseRadius: 250,
+        mouseForce: 3,
     };
 
     // Reduce particles on mobile for performance
     if (window.innerWidth < 768) {
-        config.particleCount = 25;
+        config.particleCount = 50;
         config.lineDistance = 100;
     }
 
@@ -264,13 +279,15 @@ function initParticles() {
     }
 
     function createParticle() {
+        const color = colors[Math.floor(Math.random() * colors.length)];
         return {
             x: Math.random() * width,
             y: Math.random() * height,
             vx: (Math.random() - 0.5) * config.maxSpeed * 2,
             vy: (Math.random() - 0.5) * config.maxSpeed * 2,
-            size: Math.random() * config.particleSize + 0.5,
-            opacity: Math.random() * 0.5 + 0.3,
+            size: Math.random() * (config.maxSize - config.minSize) + config.minSize,
+            opacity: Math.random() * 0.5 + 0.4,
+            color: color,
         };
     }
 
@@ -285,10 +302,16 @@ function initParticles() {
     function drawParticle(p) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = config.particleColor;
-        ctx.globalAlpha = p.opacity;
+        ctx.fillStyle = `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.opacity})`;
         ctx.fill();
-        ctx.globalAlpha = 1;
+
+        // Subtle glow effect for larger particles
+        if (p.size > 2.5) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size * 2.5, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.opacity * 0.08})`;
+            ctx.fill();
+        }
     }
 
     function drawLines() {
@@ -299,15 +322,19 @@ function initParticles() {
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
                 if (dist < config.lineDistance) {
-                    const opacity = 1 - (dist / config.lineDistance);
+                    const opacity = (1 - (dist / config.lineDistance)) * config.lineOpacity;
+                    // Blend colors of the two connected particles
+                    const ci = particles[i].color;
+                    const cj = particles[j].color;
+                    const mr = Math.round((ci.r + cj.r) / 2);
+                    const mg = Math.round((ci.g + cj.g) / 2);
+                    const mb = Math.round((ci.b + cj.b) / 2);
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = config.lineColor;
-                    ctx.globalAlpha = opacity;
+                    ctx.strokeStyle = `rgba(${mr}, ${mg}, ${mb}, ${opacity})`;
                     ctx.lineWidth = config.lineWidth;
                     ctx.stroke();
-                    ctx.globalAlpha = 1;
                 }
             }
         }
@@ -320,15 +347,14 @@ function initParticles() {
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
                 if (dist < config.mouseRadius) {
-                    const opacity = 1 - (dist / config.mouseRadius);
+                    const opacity = (1 - (dist / config.mouseRadius)) * 0.2;
+                    const c = particles[i].color;
                     ctx.beginPath();
                     ctx.moveTo(mouse.x, mouse.y);
                     ctx.lineTo(particles[i].x, particles[i].y);
-                    ctx.strokeStyle = 'rgba(26, 107, 90, 0.15)';
-                    ctx.globalAlpha = opacity * 0.6;
+                    ctx.strokeStyle = `rgba(${c.r}, ${c.g}, ${c.b}, ${opacity})`;
                     ctx.lineWidth = 0.8;
                     ctx.stroke();
-                    ctx.globalAlpha = 1;
                 }
             }
         }
@@ -336,6 +362,30 @@ function initParticles() {
 
     function update() {
         for (const p of particles) {
+            // Mouse repulsion — particles push away from cursor
+            if (mouse.x !== null) {
+                const dx = p.x - mouse.x;
+                const dy = p.y - mouse.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < config.mouseRadius && dist > 0) {
+                    const force = (config.mouseRadius - dist) / config.mouseRadius * config.mouseForce;
+                    p.vx += (dx / dist) * force * 0.02;
+                    p.vy += (dy / dist) * force * 0.02;
+                }
+            }
+
+            // Apply velocity with damping
+            p.vx *= 0.99;
+            p.vy *= 0.99;
+
+            // Clamp speed
+            const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+            if (speed > config.maxSpeed * 3) {
+                p.vx = (p.vx / speed) * config.maxSpeed * 3;
+                p.vy = (p.vy / speed) * config.maxSpeed * 3;
+            }
+
             p.x += p.vx;
             p.y += p.vy;
 
@@ -362,7 +412,6 @@ function initParticles() {
     // Event listeners
     window.addEventListener('resize', () => {
         resize();
-        // Redistribute particles that ended up out of bounds
         for (const p of particles) {
             if (p.x > width) p.x = Math.random() * width;
             if (p.y > height) p.y = Math.random() * height;
