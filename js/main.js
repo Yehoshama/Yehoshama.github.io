@@ -257,12 +257,15 @@ function initParticles() {
         particleCount: 150,
         maxSpeed: 0.35,
         minSize: 1.5,
-        maxSize: 4,
+        maxSize: 3,
+        glowRadius: 18,       // Glow halo radius multiplier
         lineDistance: 140,
-        lineWidth: 0.6,
-        lineOpacity: 0.15,
+        lineWidth: 1,
+        lineGlow: 12,         // Increased shadow blur for line glow
+        lineOpacity: 0.35,    // Increased line opacity
         mouseRadius: 250,
         mouseForce: 3,
+        homeForce: 0.003,
     };
 
     // Reduce particles on mobile for performance
@@ -278,11 +281,20 @@ function initParticles() {
         height = canvas.height = window.innerHeight;
     }
 
-    function createParticle() {
+    function createParticle(index, total) {
         const color = colors[Math.floor(Math.random() * colors.length)];
+        // Distribute home positions evenly across the canvas
+        const cols = Math.ceil(Math.sqrt(total * (width / height)));
+        const rows = Math.ceil(total / cols);
+        const col = index % cols;
+        const row = Math.floor(index / cols);
+        const homeX = (col + 0.5) * (width / cols) + (Math.random() - 0.5) * (width / cols) * 0.6;
+        const homeY = (row + 0.5) * (height / rows) + (Math.random() - 0.5) * (height / rows) * 0.6;
         return {
-            x: Math.random() * width,
-            y: Math.random() * height,
+            x: homeX,
+            y: homeY,
+            homeX: homeX,
+            homeY: homeY,
             vx: (Math.random() - 0.5) * config.maxSpeed * 2,
             vy: (Math.random() - 0.5) * config.maxSpeed * 2,
             size: Math.random() * (config.maxSize - config.minSize) + config.minSize,
@@ -295,26 +307,37 @@ function initParticles() {
         resize();
         particles = [];
         for (let i = 0; i < config.particleCount; i++) {
-            particles.push(createParticle());
+            particles.push(createParticle(i, config.particleCount));
         }
     }
 
     function drawParticle(p) {
+        const { r, g, b } = p.color;
+
+        // Outer glow halo (radial gradient) - reduced opacity by ~50%
+        const glowR = p.size * config.glowRadius;
+        const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowR);
+        gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${p.opacity * 0.25})`);
+        gradient.addColorStop(0.15, `rgba(${r}, ${g}, ${b}, ${p.opacity * 0.1})`);
+        gradient.addColorStop(0.5, `rgba(${r}, ${g}, ${b}, ${p.opacity * 0.02})`);
+        gradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.opacity})`;
+        ctx.arc(p.x, p.y, glowR, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
         ctx.fill();
 
-        // Subtle glow effect for larger particles
-        if (p.size > 2.5) {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.size * 2.5, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.opacity * 0.08})`;
-            ctx.fill();
-        }
+        // Bright core dot
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.opacity * 0.9})`;
+        ctx.shadowColor = `rgba(${r}, ${g}, ${b}, 0.8)`;
+        ctx.shadowBlur = 12;
+        ctx.fill();
+        ctx.shadowBlur = 0;
     }
 
     function drawLines() {
+        ctx.save();
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
@@ -323,7 +346,6 @@ function initParticles() {
 
                 if (dist < config.lineDistance) {
                     const opacity = (1 - (dist / config.lineDistance)) * config.lineOpacity;
-                    // Blend colors of the two connected particles
                     const ci = particles[i].color;
                     const cj = particles[j].color;
                     const mr = Math.round((ci.r + cj.r) / 2);
@@ -334,6 +356,8 @@ function initParticles() {
                     ctx.lineTo(particles[j].x, particles[j].y);
                     ctx.strokeStyle = `rgba(${mr}, ${mg}, ${mb}, ${opacity})`;
                     ctx.lineWidth = config.lineWidth;
+                    ctx.shadowColor = `rgba(${mr}, ${mg}, ${mb}, ${opacity * 2})`;
+                    ctx.shadowBlur = config.lineGlow;
                     ctx.stroke();
                 }
             }
@@ -347,17 +371,20 @@ function initParticles() {
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
                 if (dist < config.mouseRadius) {
-                    const opacity = (1 - (dist / config.mouseRadius)) * 0.2;
+                    const opacity = (1 - (dist / config.mouseRadius)) * 0.3;
                     const c = particles[i].color;
                     ctx.beginPath();
                     ctx.moveTo(mouse.x, mouse.y);
                     ctx.lineTo(particles[i].x, particles[i].y);
                     ctx.strokeStyle = `rgba(${c.r}, ${c.g}, ${c.b}, ${opacity})`;
-                    ctx.lineWidth = 0.8;
+                    ctx.lineWidth = 1;
+                    ctx.shadowColor = `rgba(${c.r}, ${c.g}, ${c.b}, ${opacity * 2})`;
+                    ctx.shadowBlur = 10;
                     ctx.stroke();
                 }
             }
         }
+        ctx.restore();
     }
 
     function update() {
@@ -375,9 +402,15 @@ function initParticles() {
                 }
             }
 
+            // Redistribution: gently pull back toward home position
+            const hx = p.homeX - p.x;
+            const hy = p.homeY - p.y;
+            p.vx += hx * config.homeForce;
+            p.vy += hy * config.homeForce;
+
             // Apply velocity with damping
-            p.vx *= 0.99;
-            p.vy *= 0.99;
+            p.vx *= 0.98;
+            p.vy *= 0.98;
 
             // Clamp speed
             const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
