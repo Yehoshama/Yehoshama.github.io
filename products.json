@@ -1,0 +1,37 @@
+{
+  "products": [
+    {
+      "id": "product-alpha",
+      "name": "Product Alpha",
+      "tagline": "A powerful tool designed to streamline your workflow and boost productivity.",
+      "status": "coming-soon",
+      "price": null,
+      "currency": "USD",
+      "category": "tools",
+      "folder": "products/product-alpha",
+      "image": "products/product-alpha/assets/hero.webp"
+    },
+    {
+      "id": "product-beta",
+      "name": "Product Beta",
+      "tagline": "Data-driven insights for businesses that want to understand their metrics.",
+      "status": "coming-soon",
+      "price": null,
+      "currency": "USD",
+      "category": "analytics",
+      "folder": "products/product-beta",
+      "image": "products/product-beta/assets/hero.webp"
+    },
+    {
+      "id": "product-gamma",
+      "name": "Product Gamma",
+      "tagline": "Enterprise-grade security solutions built with transparency and integrity.",
+      "status": "coming-soon",
+      "price": null,
+      "currency": "USD",
+      "category": "security",
+      "folder": "products/product-gamma",
+      "image": "products/product-gamma/assets/hero.webp"
+    }
+  ]
+}
