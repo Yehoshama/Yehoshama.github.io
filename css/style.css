@@ -66,7 +66,8 @@ html {
 }
 
 body {
-  padding-top: 34px; /* Space for construction banner */
+  padding-top: 34px;
+  /* Space for construction banner */
   background-color: var(--bg-primary);
   color: var(--text-primary);
   font-family: var(--font-sans);
@@ -156,22 +157,27 @@ p {
   top: 0;
   left: 0;
   width: 100%;
-  height: 34px;
+  padding: 12px;
   background-color: var(--warning);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  font-weight: 600;
+  color: #000;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: bold;
   z-index: 2000;
-  letter-spacing: 0.5px;
+}
+
+.construction-banner a,
+.bottom-construction-banner a {
+  color: #0d6efd !important;
+  /* Bold, standard bluish link color */
+  text-decoration: underline;
+  font-weight: 800;
 }
 
 /* ── Header & Navigation ── */
 .site-header {
   position: fixed;
-  top: 34px;
+  top: 48px;
   width: 100%;
   height: var(--nav-height);
   background: rgba(245, 246, 250, 0.88);
@@ -1445,10 +1451,10 @@ html[dir="rtl"] .lang-switcher {
   /* Mobile Nav */
   .site-nav {
     position: fixed;
-    top: 34px;
+    top: 48px;
     right: -100%;
     width: 280px;
-    height: calc(100vh - 34px);
+    height: calc(100vh - 48px);
     background: var(--bg-surface);
     border-left: 1px solid var(--border-color);
     z-index: 1001;
@@ -1971,4 +1977,85 @@ html[dir="rtl"] .value-item {
     flex-direction: column;
     gap: 0.75rem;
   }
+}
+
+/*  Disclaimer Popup  */
+.disclaimer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.disclaimer-modal {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 4px solid var(--primary);
+  max-width: 600px;
+  width: 90%;
+  color: #000000;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.disclaimer-modal h2 {
+  color: #d32f2f;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.disclaimer-modal p {
+  color: #000000;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+.disclaimer-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+@media (max-width: 480px) {
+  .disclaimer-buttons {
+    flex-direction: column;
+  }
+}
+
+/* ── Bottom Banner ── */
+.bottom-construction-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--primary);
+  color: #000;
+  font-weight: bold;
+  text-align: center;
+  padding: 12px;
+  font-size: 0.95rem;
+  z-index: 900;
+}
+
+.bottom-construction-banner a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+body {
+  padding-bottom: 44px;
+  /* Ensure content isn't hidden behind the fixed bottom banner */
 }

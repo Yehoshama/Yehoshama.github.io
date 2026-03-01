@@ -5,11 +5,47 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // ── Disclaimer Popup ──
+    // Note: Do not show on the license page itself to avoid a loop.
+    if (!window.location.pathname.includes('license.html')) {
+        const disclaimerAgreed = sessionStorage.getItem('yehoshama-disclaimer-agreed');
+        if (!disclaimerAgreed) {
+            const overlay = document.createElement('div');
+            overlay.className = 'disclaimer-overlay';
+            overlay.innerHTML = `
+                <div class="disclaimer-modal">
+                    <h2>⚠️ Construction Warning ⚠️</h2>
+                    <p>This website is currently under active development. The information contained herein may be inaccurate, incomplete, or merely placeholder text.</p>
+                    <p>By proceeding, you agree to our <a href="license.html" style="color: var(--primary); text-decoration: underline;">Temporary License & Disclaimer</a> and acknowledge that we hold no liability for anything presented here.</p>
+                    <div class="disclaimer-buttons">
+                        <button id="btn-decline" class="btn btn-outline" style="min-width: 140px;">I Disagree</button>
+                        <button id="btn-accept" class="btn btn-primary" style="min-width: 140px;">I Understand and Agree</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+
+            document.getElementById('btn-accept').addEventListener('click', () => {
+                sessionStorage.setItem('yehoshama-disclaimer-agreed', 'true');
+                overlay.remove();
+                document.body.style.overflow = '';
+            });
+
+            document.getElementById('btn-decline').addEventListener('click', () => {
+                // Redirect user to an external page explaining why they can't browse
+                alert("You must agree to the terms to view this website while it is under construction.");
+                window.location.href = "https://en.wikipedia.org/wiki/Disclaimer";
+            });
+        }
+    }
+
     // ── Year Auto-fill ──
     const yearSpan = document.getElementById('year');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
+
 
     // ── Mobile Hamburger Nav ──
     const hamburger = document.getElementById('hamburger-toggle');
