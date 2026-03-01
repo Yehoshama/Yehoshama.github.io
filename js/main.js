@@ -269,6 +269,12 @@ function initParticles() {
     const canvas = document.getElementById('particle-canvas');
     if (!canvas) return;
 
+    // Disable particle system completely on mobile for performance
+    if (window.innerWidth < 768) {
+        canvas.style.display = 'none';
+        return;
+    }
+
     const ctx = canvas.getContext('2d');
     let animId;
     let particles = [];
@@ -303,12 +309,6 @@ function initParticles() {
         mouseForce: 3,
         homeForce: 0.003,
     };
-
-    // Reduce particles on mobile for performance
-    if (window.innerWidth < 768) {
-        config.particleCount = 50;
-        config.lineDistance = 100;
-    }
 
     let mouse = { x: null, y: null };
 

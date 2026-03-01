@@ -1998,7 +1998,7 @@ html[dir="rtl"] .value-item {
   background: #ffffff;
   padding: 2.5rem;
   border-radius: 12px;
-  border: 4px solid var(--primary);
+  border: 4px solid var(--warning);
   max-width: 600px;
   width: 90%;
   color: #000000;
@@ -2029,6 +2029,18 @@ html[dir="rtl"] .value-item {
 }
 
 @media (max-width: 480px) {
+  .disclaimer-modal {
+    padding: 1rem;
+  }
+
+  .disclaimer-modal h2 {
+    font-size: 1.4rem;
+  }
+
+  .disclaimer-modal p {
+    font-size: 0.95rem;
+  }
+
   .disclaimer-buttons {
     flex-direction: column;
   }
@@ -2040,7 +2052,7 @@ html[dir="rtl"] .value-item {
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: var(--primary);
+  background-color: var(--warning);
   color: #000;
   font-weight: bold;
   text-align: center;
@@ -2058,4 +2070,57 @@ html[dir="rtl"] .value-item {
 body {
   padding-bottom: 44px;
   /* Ensure content isn't hidden behind the fixed bottom banner */
+}
+
+/* ── RTL Support ── */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .hero-content {
+  align-items: flex-end;
+  text-align: right;
+}
+
+[dir="rtl"] .hero-ctas {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .site-nav>ul {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .logo {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .card-header {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .metrics-row {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer-nav {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .lang-switcher {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .timeline {
+  padding-left: 0;
+  padding-right: 2.5rem;
+}
+
+[dir="rtl"] .timeline::before {
+  left: auto;
+  right: 7px;
+}
+
+[dir="rtl"] .timeline-marker {
+  left: auto;
+  right: -2.5rem;
 }
