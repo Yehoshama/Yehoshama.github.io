@@ -64,8 +64,8 @@
         <section class="subpage-hero">
             <div class="container">
                 <a href="index.html" class="back-link">← Back to Home</a>
-                <h1>Blog</h1>
-                <p class="subpage-subtitle">Technical articles, case studies, tutorials, and product announcements.</p>
+                <h1 data-i18n="blog.title">Blog</h1>
+                <p class="subpage-subtitle" data-i18n="blog.subtitle">Technical articles, case studies, tutorials, and product announcements.</p>
             </div>
         </section>
 
@@ -74,18 +74,18 @@
                 <div class="blog-layout">
                     <!-- Topic Tree Sidebar -->
                     <aside class="blog-sidebar reveal">
-                        <h3 class="sidebar-title">Topics</h3>
+                        <h3 class="sidebar-title" data-i18n="blog.topics.title">Topics</h3>
                         <ul class="topic-tree">
                             <li class="topic-node">
                                 <button class="topic-toggle is-open" aria-expanded="true">
                                     <span class="toggle-icon">▾</span>
                                     <span class="topic-icon">📢</span>
-                                    Announcements
+                                    <span data-i18n="blog.topics.announcements">Announcements</span>
                                 </button>
                                 <ul class="topic-children is-expanded">
                                     <li><a href="blog/announcements/introducing-yehoshama-com.html" class="post-link">
-                                            <span class="post-title">Introducing Yehoshama.com</span>
-                                            <span class="post-meta">Mar 2026</span>
+                                            <span class="post-title" data-i18n="blog.posts.introducing.title">Introducing Yehoshama.com</span>
+                                            <span class="post-meta" data-i18n="blog.posts.introducing.date">Mar 2026</span>
                                         </a></li>
                                 </ul>
                             </li>
@@ -93,12 +93,12 @@
                                 <button class="topic-toggle is-open" aria-expanded="true">
                                     <span class="toggle-icon">▾</span>
                                     <span class="topic-icon">⚙️</span>
-                                    Engineering
+                                    <span data-i18n="blog.topics.engineering">Engineering</span>
                                 </button>
                                 <ul class="topic-children is-expanded">
                                     <li><a href="blog/engineering/building-resilient-apis.html" class="post-link">
-                                            <span class="post-title">Building Resilient APIs</span>
-                                            <span class="post-meta">Mar 2026</span>
+                                            <span class="post-title" data-i18n="blog.posts.resilient_apis.title">Building Resilient APIs</span>
+                                            <span class="post-meta" data-i18n="blog.posts.resilient_apis.date">Mar 2026</span>
                                         </a></li>
                                 </ul>
                             </li>
@@ -106,12 +106,12 @@
                                 <button class="topic-toggle is-open" aria-expanded="true">
                                     <span class="toggle-icon">▾</span>
                                     <span class="topic-icon">📖</span>
-                                    Tutorials
+                                    <span data-i18n="blog.topics.tutorials">Tutorials</span>
                                 </button>
                                 <ul class="topic-children is-expanded">
                                     <li><a href="blog/tutorials/getting-started-with-our-api.html" class="post-link">
-                                            <span class="post-title">Getting Started with Our API</span>
-                                            <span class="post-meta">Mar 2026</span>
+                                            <span class="post-title" data-i18n="blog.posts.getting_started.title">Getting Started with Our API</span>
+                                            <span class="post-meta" data-i18n="blog.posts.getting_started.date">Mar 2026</span>
                                         </a></li>
                                 </ul>
                             </li>
@@ -121,37 +121,37 @@
                     <!-- Blog Posts Feed -->
                     <div class="blog-feed">
                         <div class="section-header reveal">
-                            <h2>Latest Posts</h2>
+                            <h2 data-i18n="blog.latest_posts.title">Latest Posts</h2>
                             <div class="accent-line"></div>
                         </div>
 
                         <a href="blog/announcements/introducing-yehoshama-com.html" class="blog-post-card reveal">
                             <div class="blog-post-meta">
-                                <span class="badge new">Announcements</span>
-                                <span class="blog-post-date">March 2026 · 3 min read</span>
+                                <span class="badge new" data-i18n="blog.topics.announcements">Announcements</span>
+                                <span class="blog-post-date" data-i18n="blog.posts.introducing.meta">March 2026 · 3 min read</span>
                             </div>
-                            <h3>Introducing Yehoshama.com</h3>
-                            <p>We're launching the commercial arm of the Yehoshama Foundation — software built to last.
+                            <h3 data-i18n="blog.posts.introducing.title">Introducing Yehoshama.com</h3>
+                            <p data-i18n="blog.posts.introducing.excerpt">We're launching the commercial arm of the Yehoshama Foundation — software built to last.
                             </p>
                         </a>
 
                         <a href="blog/engineering/building-resilient-apis.html" class="blog-post-card reveal">
                             <div class="blog-post-meta">
-                                <span class="badge available">Engineering</span>
-                                <span class="blog-post-date">March 2026 · 5 min read</span>
+                                <span class="badge available" data-i18n="blog.topics.engineering">Engineering</span>
+                                <span class="blog-post-date" data-i18n="blog.posts.resilient_apis.meta">March 2026 · 5 min read</span>
                             </div>
-                            <h3>Building Resilient APIs</h3>
-                            <p>Best practices for designing APIs that handle failure gracefully and scale under
+                            <h3 data-i18n="blog.posts.resilient_apis.title">Building Resilient APIs</h3>
+                            <p data-i18n="blog.posts.resilient_apis.excerpt">Best practices for designing APIs that handle failure gracefully and scale under
                                 pressure.</p>
                         </a>
 
                         <a href="blog/tutorials/getting-started-with-our-api.html" class="blog-post-card reveal">
                             <div class="blog-post-meta">
-                                <span class="badge coming-soon">Tutorials</span>
-                                <span class="blog-post-date">March 2026 · 8 min read</span>
+                                <span class="badge coming-soon" data-i18n="blog.topics.tutorials">Tutorials</span>
+                                <span class="blog-post-date" data-i18n="blog.posts.getting_started.meta">March 2026 · 8 min read</span>
                             </div>
-                            <h3>Getting Started with Our API</h3>
-                            <p>A step-by-step guide to integrating with the Yehoshama API.</p>
+                            <h3 data-i18n="blog.posts.getting_started.title">Getting Started with Our API</h3>
+                            <p data-i18n="blog.posts.getting_started.excerpt">A step-by-step guide to integrating with the Yehoshama API.</p>
                         </a>
                     </div>
                 </div>
@@ -162,15 +162,15 @@
     <div class="bottom-construction-banner">🚧 This website is currently under construction. Please read our <a href="license.html">Temporary License & Disclaimer</a>. 🚧</div>
     <footer class="site-footer">
         <div class="container footer-inner">
-            <div class="footer-brand"><span>Yehoshama</span></div>
+            <div class="footer-brand"><span data-i18n="brand.name">Yehoshama</span></div>
             <nav class="footer-nav">
-                <a href="index.html">Home</a><a href="services.html">Services</a>
-                <a href="products.html">Products</a><a href="about.html">About</a>
-                <a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+                <a href="index.html" data-i18n="nav.home">Home</a><a href="services.html" data-i18n="nav.services">Services</a>
+                <a href="products.html" data-i18n="nav.products">Products</a><a href="about.html" data-i18n="nav.about">About</a>
+                <a href="blog.html" data-i18n="nav.blog">Blog</a><a href="contact.html" data-i18n="nav.contact">Contact</a>
             </nav>
-            <div class="foundation-link">A product of the <a href="https://www.yehoshama.foundation"
+            <div class="foundation-link" data-i18n="footer.foundation">A product of the <a href="https://www.yehoshama.foundation"
                     target="_blank">Yehoshama Foundation</a>. Proceeds support open-source development.</div>
-            <div class="footer-copy">&copy; <span id="year"></span> Yehoshama. All rights reserved.</div>
+            <div class="footer-copy" data-i18n="footer.copyright">&copy; <span id="year"></span> Yehoshama. All rights reserved.</div>
         </div>
     </footer>
 

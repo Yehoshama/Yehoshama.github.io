@@ -63,6 +63,8 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -74,6 +76,8 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 /* ── Typography ── */
@@ -1461,10 +1465,15 @@ html[dir="rtl"] .lang-switcher {
     transition: right 0.35s ease;
     padding: 5rem 2rem 2rem;
     box-shadow: -4px 0 24px rgba(0, 0, 0, 0.08);
+    overflow-y: auto;
   }
 
   .site-nav.is-open {
     right: 0;
+  }
+
+  body.mobile-nav-open {
+    overflow: hidden;
   }
 
   .site-nav>ul {

@@ -56,14 +56,14 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.classList.add('is-active');
         siteNav.classList.add('is-open');
         if (navOverlay) navOverlay.classList.add('is-visible');
-        document.body.style.overflow = 'hidden';
+        document.body.classList.add('mobile-nav-open');
     }
 
     function closeMobileNav() {
         hamburger.classList.remove('is-active');
         siteNav.classList.remove('is-open');
         if (navOverlay) navOverlay.classList.remove('is-visible');
-        document.body.style.overflow = '';
+        document.body.classList.remove('mobile-nav-open');
     }
 
     if (hamburger && siteNav) {

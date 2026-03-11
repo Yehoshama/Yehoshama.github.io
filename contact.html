@@ -65,7 +65,7 @@
             <div class="container">
                 <a href="index.html" class="back-link">← Back to Home</a>
                 <h1 data-i18n="contact.page.title">Get in Touch</h1>
-                <p class="subpage-subtitle">Have a project in mind, a question, or just want to say hello? We'd love to
+                <p class="subpage-subtitle" data-i18n="contact.page.subtitle">Have a project in mind, a question, or just want to say hello? We'd love to
                     hear from you.</p>
             </div>
         </section>
@@ -76,55 +76,55 @@
                     <div class="contact-form reveal">
                         <form id="contact-form" action="#" method="POST">
                             <div class="form-group">
-                                <label for="contact-name">Name</label>
-                                <input type="text" id="contact-name" name="name" placeholder="Your name" required>
+                                <label for="contact-name" data-i18n="contact.form.name.label">Name</label>
+                                <input type="text" id="contact-name" name="name" data-i18n-placeholder="contact.form.name.placeholder" placeholder="Your name" required>
                             </div>
                             <div class="form-group">
-                                <label for="contact-email">Email</label>
-                                <input type="email" id="contact-email" name="email" placeholder="you@example.com"
+                                <label for="contact-email" data-i18n="contact.form.email.label">Email</label>
+                                <input type="email" id="contact-email" name="email" data-i18n-placeholder="contact.form.email.placeholder" placeholder="you@example.com"
                                     required>
                             </div>
                             <div class="form-group">
-                                <label for="contact-subject">Subject</label>
-                                <input type="text" id="contact-subject" name="subject" placeholder="Project inquiry">
+                                <label for="contact-subject" data-i18n="contact.form.subject.label">Subject</label>
+                                <input type="text" id="contact-subject" name="subject" data-i18n-placeholder="contact.form.subject.placeholder" placeholder="Project inquiry">
                             </div>
                             <div class="form-group">
-                                <label for="contact-budget">Budget Range</label>
+                                <label for="contact-budget" data-i18n="contact.form.budget.label">Budget Range</label>
                                 <select id="contact-budget" name="budget">
-                                    <option value="">Select a range</option>
-                                    <option value="small">Under $5,000</option>
-                                    <option value="medium">$5,000 – $25,000</option>
-                                    <option value="large">$25,000 – $100,000</option>
-                                    <option value="enterprise">$100,000+</option>
-                                    <option value="unsure">Not sure yet</option>
+                                    <option value="" data-i18n="contact.form.budget.select">Select a range</option>
+                                    <option value="small" data-i18n="contact.form.budget.small">Under $5,000</option>
+                                    <option value="medium" data-i18n="contact.form.budget.medium">$5,000 – $25,000</option>
+                                    <option value="large" data-i18n="contact.form.budget.large">$25,000 – $100,000</option>
+                                    <option value="enterprise" data-i18n="contact.form.budget.enterprise">$100,000+</option>
+                                    <option value="unsure" data-i18n="contact.form.budget.unsure">Not sure yet</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="contact-message">Message</label>
+                                <label for="contact-message" data-i18n="contact.form.message.label">Message</label>
                                 <textarea id="contact-message" name="message"
-                                    placeholder="Tell us about your project..." required></textarea>
+                                    data-i18n-placeholder="contact.form.message.placeholder" placeholder="Tell us about your project..." required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary" id="contact-submit" style="width:100%;">Send
+                            <button type="submit" class="btn btn-primary" id="contact-submit" style="width:100%;" data-i18n="contact.form.submit">Send
                                 Message</button>
                         </form>
                     </div>
                     <div class="reveal">
                         <div class="section-header">
-                            <h3>Other Ways to Reach Us</h3>
+                            <h3 data-i18n="contact.other_ways.title">Other Ways to Reach Us</h3>
                             <div class="accent-line"></div>
                         </div>
                         <div style="margin-top:1.5rem;">
-                            <h4 style="margin-bottom:0.5rem;">Email</h4>
+                            <h4 style="margin-bottom:0.5rem;" data-i18n="contact.other_ways.email.title">Email</h4>
                             <p><a href="mailto:yehoshama@gmail.com" id="email-link">yehoshama@gmail.com</a></p>
                         </div>
                         <div style="margin-top:2rem;">
-                            <h4 style="margin-bottom:0.5rem;">Response Time</h4>
-                            <p style="color:var(--text-secondary);">We aim to respond to all inquiries within 24 hours
+                            <h4 style="margin-bottom:0.5rem;" data-i18n="contact.other_ways.response_time.title">Response Time</h4>
+                            <p style="color:var(--text-secondary);" data-i18n="contact.other_ways.response_time.text">We aim to respond to all inquiries within 24 hours
                                 during business days.</p>
                         </div>
                         <div style="margin-top:2rem;">
-                            <h4 style="margin-bottom:0.5rem;">Foundation</h4>
-                            <p style="color:var(--text-secondary);">For open-source and Foundation-related matters,
+                            <h4 style="margin-bottom:0.5rem;" data-i18n="contact.other_ways.foundation.title">Foundation</h4>
+                            <p style="color:var(--text-secondary);" data-i18n="contact.other_ways.foundation.text">For open-source and Foundation-related matters,
                                 visit <a href="https://www.yehoshama.foundation"
                                     target="_blank">www.yehoshama.foundation</a>.</p>
                         </div>
@@ -137,15 +137,15 @@
     <div class="bottom-construction-banner">🚧 This website is currently under construction. Please read our <a href="license.html">Temporary License & Disclaimer</a>. 🚧</div>
     <footer class="site-footer">
         <div class="container footer-inner">
-            <div class="footer-brand"><span>Yehoshama</span></div>
+            <div class="footer-brand"><span data-i18n="brand.name">Yehoshama</span></div>
             <nav class="footer-nav">
-                <a href="index.html">Home</a><a href="services.html">Services</a>
-                <a href="products.html">Products</a><a href="about.html">About</a>
-                <a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+                <a href="index.html" data-i18n="nav.home">Home</a><a href="services.html" data-i18n="nav.services">Services</a>
+                <a href="products.html" data-i18n="nav.products">Products</a><a href="about.html" data-i18n="nav.about">About</a>
+                <a href="blog.html" data-i18n="nav.blog">Blog</a><a href="contact.html" data-i18n="nav.contact">Contact</a>
             </nav>
-            <div class="foundation-link">A product of the <a href="https://www.yehoshama.foundation"
+            <div class="foundation-link" data-i18n="footer.foundation">A product of the <a href="https://www.yehoshama.foundation"
                     target="_blank">Yehoshama Foundation</a>. Proceeds support open-source development.</div>
-            <div class="footer-copy">&copy; <span id="year"></span> Yehoshama. All rights reserved.</div>
+            <div class="footer-copy" data-i18n="footer.copyright">&copy; <span id="year"></span> Yehoshama. All rights reserved.</div>
         </div>
     </footer>
 
